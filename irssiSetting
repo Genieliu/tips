@@ -1,0 +1,10 @@
+auto identify and wait 2 second before joining channel
+/NETWORK ADD -autosendcmd "/^msg nickserv IDENTIFY <password>; wait 2000" <ExampleNet>
+
+
+Automatically join to channels after connected to server:
+/CHANNEL ADD -auto <#lounge> <ExampleNet>
+
+
+Ignore joins and quits
+use the script in https://github.com/flebel/irssi-revolving-door
