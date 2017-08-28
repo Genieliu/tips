@@ -1,7 +1,6 @@
 initial
 $ git init
 
-
 status
 $ git status
 
@@ -39,3 +38,83 @@ $ git reset HEAD <file>
 delete file and acidently delete file how to find back
 $ git rm <file>
 $ git checkout -- <file>
+
+connect to remote repository
+1. generate ssh key
+$ ssh-keygen -t rsa -C "youremail@example"
+put your ~/.ssh/id_rsa.pub on you github account
+    
+2. connect to github repository
+$ git remote add origin git@github.com:yourAccount/yourRepository.git
+
+3. push local repository to remote repository
+$ git push -u origin maste //origin: the remote repository. use -u options to build connection between local and remote
+
+when there's already repository in Github. use clone command
+$ git clone https://github.com/path/repositoryName
+
+
+branch 
+1. create branch and change to it 
+$ git checkout -b branchName 
+the above command equals to the following two command
+$ git branch branchName
+$ git checkout branchName
+
+2. list the branches 
+$ git branch //the start mean the current branch
+
+3. merge branches
+$ git merge branchName //merge the specfic branch to the current branch
+
+4. delete branch
+$ git branch -d branchName
+
+show the graph of branches 
+$ git log --graph
+
+When using merge, the default mode is using Fast forward mode. This will discard branch message.
+$ git merge --no-ff -m "commends" branchName // use --no-ff options to forbid Fast forward mode.
+
+when there's not ready to commit file in the current branch, and we need to create another branch to fix bugs.
+$ git stash //hide the current working scene(the not ready to be committed files)
+$ git checkout master && git branch -b branchName //create another branch from master
+After fixing the bug in branch
+$ git checkout previousBranchName
+$ git stash list // to see the hided scene
+$ git stash apply [stash-name] && git stash drop // this two command equals $ git stash pop
+
+discard the not merged branch
+$ git branch -D <branch-name>
+
+pushing
+remote status 
+$ git remote 
+$ git remote -v
+
+pusing branches
+$ git push origin <branch-name>
+
+fetch the remote branch after cloning the github repository
+$ git checkout -b dev origin/dev //create the local branch corresponding to remote repository branch
+
+After someone else has pushed to the remote branch($ git push origin dev), when u push to the remote, u will get errors.
+First of all, u need to pull the new code from remote.
+$ git branch --set-upstream dev origin/dev // Branch dev set up to track remote branch dev from origin.
+$ git branch --set-upstream-to=origin/<branch> dev //--set-upstream is deprecated 
+$ git pull //there will be conflict and u need to fix 
+
+
+Tags
+====
+tags is binded with commit.
+create tags:
+$ git tag <tag-name> //tags correspond to latest commit
+$ git tag <tag-name> [commit-nu] //tags correspond to the specfic commit nu.
+list tags:
+$ git tag //tags are sorted by alphabet
+$ git show <tag-name> //check the tag's commit info.
+create tag with specfic information
+$ git tag -a <tag-name> -m "information" <commit-nu>
+use the gpg to sign the tag, first need the gpg and the gpg key
+$ git tag -s <tag-name> -m "information" <commit-nu>
