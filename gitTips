@@ -1,0 +1,41 @@
+initial
+$ git init
+
+
+status
+$ git status
+
+add file to pool
+$ git add <file>
+
+commit file
+$ git commit -m "your comments"
+
+
+check log
+$ git log
+$ git log --pretty=oneline
+
+check back to previous version, HEAD^ mean last version and double HEAD^^ mean second last version
+$ git reset --hard HEAD^
+$ git reset --hard <version_number>
+
+when check back to previous version and want to undo
+$ git reflog  //find out the version_number
+$ git reset --hard <version_number>
+
+check the different between repository version and the current working version
+$ git diff HEAD -- <file>
+
+drop modified work in working
+$ git checkout -- <file>
+//There are two situations here. 
+1. File not in the buffer pool, then the file will be the same with repository. 
+2. File in buff pool, after this command, the file will be the same as the buff pool.
+
+drop modified work in buff pool
+$ git reset HEAD <file>
+
+delete file and acidently delete file how to find back
+$ git rm <file>
+$ git checkout -- <file>
