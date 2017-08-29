@@ -118,3 +118,54 @@ create tag with specfic information
 $ git tag -a <tag-name> -m "information" <commit-nu>
 use the gpg to sign the tag, first need the gpg and the gpg key
 $ git tag -s <tag-name> -m "information" <commit-nu>
+
+delete tag
+$ git tag -d <tagname>
+push specfic tag
+$ git push origin <tagname>
+push all tags
+$ git push origin --tags
+delete tag in remote repository
+1. first delete the local tag
+$ git tag -d <tagname>
+2. push remote tag
+$ git push origin :refs/tags/<tagname>
+
+
+settings for git
+$ git config --global color.ui true
+
+
+gitignore
+
+there's lots of ready to use files: https://github.com/github/gitignore
+$ git check-ignore -v <filename>//to see which rule make git ignore the file.
+
+alias, regular alias setting
+$ git config --global alias.st status
+$ git config --global alias.ci commit
+$ git config --global alias.br branch
+$ git config --global alias.last 'log -l'
+$ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+when only apply to the current repository, place the config file in .git
+$ cat .git/config
+[core]
+    repositoryformatversion = 0
+    filemode = true
+    bare = false
+    logallrefupdates = true
+    ignorecase = true
+    precomposeunicode = true
+[remote "origin"]
+    url = git@github.com:michaelliao/learngit.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+    remote = origin
+    merge = refs/heads/master
+[alias]
+    last = log -1 //place ur alias here
+
+
+
+
